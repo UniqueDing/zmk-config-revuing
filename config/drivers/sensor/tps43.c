@@ -63,6 +63,7 @@ struct tps43_config {
 /* I2C helper functions with error recovery */
 static int tps43_i2c_read_reg(const struct device *dev, uint8_t reg, uint8_t *data, size_t len)
 {
+    LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     const struct tps43_config *config = dev->config;
     int ret;
     
@@ -80,6 +81,7 @@ static int tps43_i2c_read_reg(const struct device *dev, uint8_t reg, uint8_t *da
 
 static int tps43_i2c_write_reg(const struct device *dev, uint8_t reg, uint8_t *data, size_t len)
 {
+    LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     const struct tps43_config *config = dev->config;
     uint8_t buffer[len + 1];
     int ret;
@@ -101,6 +103,7 @@ static int tps43_i2c_write_reg(const struct device *dev, uint8_t reg, uint8_t *d
 
 static int tps43_verify_device_id(const struct device *dev)
 {
+    LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     uint8_t device_info[2];
     int ret;
     
@@ -125,6 +128,7 @@ static int tps43_verify_device_id(const struct device *dev)
 
 static int tps43_device_reset(const struct device *dev)
 {
+    LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     const struct tps43_config *config = dev->config;
     struct tps43_data *data = dev->data;
     
@@ -153,6 +157,7 @@ static int tps43_device_reset(const struct device *dev)
 
 static int tps43_configure_device(const struct device *dev)
 {
+    LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     const struct tps43_config *config = dev->config;
     uint8_t sys_cfg[2];
     int ret;
@@ -203,7 +208,10 @@ static int tps43_configure_device(const struct device *dev)
 
 static int tps43_device_init(const struct device *dev)
 {
+    LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     k_msleep(10000);
+    LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+    LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     struct tps43_data *data = dev->data;
     int ret;
     
@@ -237,6 +245,7 @@ static int tps43_device_init(const struct device *dev)
 
 static int tps43_read_touch_data(const struct device *dev)
 {
+    LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     struct tps43_data *data = dev->data;
     uint8_t touch_data[8];
     int ret;
@@ -279,6 +288,7 @@ static int tps43_read_touch_data(const struct device *dev)
 
 static void tps43_work_handler(struct k_work *work)
 {
+    LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     struct k_work_delayable *delayable_work = k_work_delayable_from_work(work);
     struct tps43_data *data = CONTAINER_OF(delayable_work, struct tps43_data, work);
     const struct device *dev = data->dev;
@@ -316,6 +326,7 @@ static void tps43_work_handler(struct k_work *work)
 
 static void tps43_gpio_callback(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
 {
+    LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     struct tps43_data *data = CONTAINER_OF(cb, struct tps43_data, gpio_cb);
     
     /* Schedule work to handle interrupt in work queue context */
@@ -404,8 +415,12 @@ static const struct sensor_driver_api tps43_driver_api = {
 
 static int tps43_init(const struct device *dev)
 {
+    LOG_WRN("start init tps43!!!! 1111");
+    LOG_WRN("start init tps43!!!! 2222");
+    LOG_WRN("start init tps43!!!! 3333");
     k_msleep(10000);
-    LOG_WRN("start init tps43!!!!");
+    LOG_WRN("start init tps43!!!! 4444");
+    LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 
     struct tps43_data *data = dev->data;
     const struct tps43_config *config = dev->config;

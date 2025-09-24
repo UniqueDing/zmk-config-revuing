@@ -52,6 +52,7 @@
 
     tps43: trackpad@74 {
         compatible = "azoteq,tps43";
+        status = "okay";
         reg = <0x74>;
 
         /* TPS43 specifications */
