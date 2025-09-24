@@ -163,7 +163,7 @@ static int tps43_configure_device(const struct device *dev)
     int ret;
     
     /* Read current system configuration */
-    ret = tps43_i2c_read_reg(dev, TPS43_REG_SYS_CONFIG_0, sys_cfg, 2);
+    ret = tps43_i2c_read_reg(dev, TPS43_REG_SYS_CONFIG, sys_cfg, 2);
     if (ret < 0) {
         LOG_ERR("Failed to read system config");
         return ret;
@@ -183,7 +183,7 @@ static int tps43_configure_device(const struct device *dev)
     /* Enable touch and proximity detection */
     sys_cfg[1] |= TPS43_SYS_CFG_TP_EVENT | TPS43_SYS_CFG_PROX_EVENT;
     
-    ret = tps43_i2c_write_reg(dev, TPS43_REG_SYS_CONFIG_0, sys_cfg, 2);
+    ret = tps43_i2c_write_reg(dev, TPS43_REG_SYS_CONFIG, sys_cfg, 2);
     if (ret < 0) {
         LOG_ERR("Failed to write system config");
         return ret;
