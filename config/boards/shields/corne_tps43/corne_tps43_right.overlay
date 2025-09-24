@@ -25,33 +25,53 @@
     status = "okay";
 };
 
-&pro_micro_i2c {
+&pinctrl {
+    i2c1_default: i2c1_default {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 1, 8)>,
+                <NRF_PSEL(TWIM_SCL, 0, 24)>;
+        };
+    };
+
+    i2c1_sleep: i2c1_sleep {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 1, 8)>,
+                <NRF_PSEL(TWIM_SCL, 0, 24)>;
+            low-power-enable;
+        };
+    };
+};
+
+&i2c1 {
     status = "okay";
-    
+    compatible = "nordic,nrf-twi";
+    pinctrl-0 = <&i2c1_default>;
+    pinctrl-1 = <&i2c1_sleep>;
+    pinctrl-names = "default", "sleep";
+
     tps43: trackpad@74 {
         compatible = "azoteq,tps43";
         reg = <0x74>;
-        
-        /* 43mm trackpad variant per datasheet */
+
+        /* TPS43 specifications */
         variant = "43mm";
-        
-        /* Resolution per TPS43 datasheet: 2048 x 1792 */
         resolution-x = <2048>;
         resolution-y = <1792>;
-        
-        /* GPIO connections for trackpad control */
-        int-gpios = <&pro_micro 8 GPIO_ACTIVE_HIGH>;  /* INT pin for interrupt mode */
-        rst-gpios = <&pro_micro 9 GPIO_ACTIVE_HIGH>;  /* RST pin for hardware reset */
-        
-        /* Touch sensitivity and behavior */
-        touch-threshold = <40>;        /* Lower = more sensitive */
-        max-touches = <5>;             /* 1-5 simultaneous touches */
-        palm-reject-threshold = <100>; /* Ignore touches larger than this */
-        
-        /* Enable gesture recognition */
+
+        /* GPIO connections */
+        /* rdy-gpios = <&pro_micro 8 GPIO_ACTIVE_HIGH>;  /* Interrupt pin */ */
+        rst-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;  /* Reset pin */
+
+        /* Touch settings */
+        touch-threshold = <10>;
+        max-touches = <5>;
+        palm-reject-threshold = <100>;
+
+        /* Enable features */
         gesture-enable;
-        
-        /* Communication timeout */
+
+        /* Communication */
         i2c-timeout-ms = <10>;
     };
-}; 
+};
+
