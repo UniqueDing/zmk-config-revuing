@@ -404,6 +404,9 @@ static const struct sensor_driver_api tps43_driver_api = {
 
 static int tps43_init(const struct device *dev)
 {
+    k_msleep(10000);
+    LOG_WRN("start init tps43!!!!");
+
     struct tps43_data *data = dev->data;
     const struct tps43_config *config = dev->config;
     int ret;
