@@ -76,15 +76,15 @@
 #define TPS43_INIT_TIMEOUT_MS       500
 #define TPS43_MAX_RETRIES           3
 
-struct tps43_config {
-	struct i2c_dt_spec i2c;
-	struct gpio_dt_spec ready_gpio;
-	struct gpio_dt_spec reset_gpio;
-	uint16_t max_x;
-	uint16_t max_y;
-	uint8_t max_touch_points;
-};
-
+// struct tps43_config {
+// 	struct i2c_dt_spec i2c;
+// 	struct gpio_dt_spec ready_gpio;
+// 	struct gpio_dt_spec reset_gpio;
+// 	uint16_t max_x;
+// 	uint16_t max_y;
+// 	uint8_t max_touch_points;
+// };
+//
 // struct tps43_data {
 // 	const struct device *dev;
 // 	struct k_work work;
