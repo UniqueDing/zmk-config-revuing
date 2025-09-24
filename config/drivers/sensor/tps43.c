@@ -195,11 +195,12 @@ static int tps43_configure_device(const struct device *dev)
         sys_put_le16(config->resolution_x ? config->resolution_x : 1024, &res_cfg[0]);
         sys_put_le16(config->resolution_y ? config->resolution_y : 1024, &res_cfg[2]);
         
-        ret = tps43_i2c_write_reg(dev, TPS43_REG_X_RESOLUTION, res_cfg, 4);
-        if (ret < 0) {
-            LOG_ERR("Failed to set resolution");
-            return ret;
-        }
+        // ret = tps43_i2c_write_reg(dev, TPS43_REG_X_RESOLUTION, res_cfg, 4);
+        // ret = tps43_i2c_write_reg(dev, TPS43_REG_X_, res_cfg, 4);
+        // if (ret < 0) {
+        //     LOG_ERR("Failed to set resolution");
+        //     return ret;
+        // }
     }
     
     LOG_INF("Device configured successfully");
