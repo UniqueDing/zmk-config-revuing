@@ -32,6 +32,7 @@ struct tps43_data {
     struct k_work_delayable work;
     struct k_mutex lock;
     const struct device *dev;
+    struct gpio_callback gpio_cb;
     
     /* Touch data */
     int16_t x;
