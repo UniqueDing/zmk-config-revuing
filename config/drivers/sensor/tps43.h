@@ -85,27 +85,27 @@ struct tps43_config {
 	uint8_t max_touch_points;
 };
 
-struct tps43_data {
-	const struct device *dev;
-	struct k_work work;
-	struct k_timer poll_timer;
-	struct k_sem sem;
-	struct gpio_callback ready_cb;
-
-	uint8_t num_touches;
-	uint16_t x[TPS43_MAX_TOUCH_POINTS];
-	uint16_t y[TPS43_MAX_TOUCH_POINTS];
-	uint8_t touch_strength[TPS43_MAX_TOUCH_POINTS];
-	uint8_t touch_area[TPS43_MAX_TOUCH_POINTS];
-	
-	/* Error tracking and recovery */
-	uint8_t error_count;
-	bool device_ready;
-	int64_t last_success_time;
-	
-	/* Power management */
-	bool is_sleeping;
-};
+// struct tps43_data {
+// 	const struct device *dev;
+// 	struct k_work work;
+// 	struct k_timer poll_timer;
+// 	struct k_sem sem;
+// 	struct gpio_callback ready_cb;
+//
+// 	uint8_t num_touches;
+// 	uint16_t x[TPS43_MAX_TOUCH_POINTS];
+// 	uint16_t y[TPS43_MAX_TOUCH_POINTS];
+// 	uint8_t touch_strength[TPS43_MAX_TOUCH_POINTS];
+// 	uint8_t touch_area[TPS43_MAX_TOUCH_POINTS];
+//
+// 	/* Error tracking and recovery */
+// 	uint8_t error_count;
+// 	bool device_ready;
+// 	int64_t last_success_time;
+//
+// 	/* Power management */
+// 	bool is_sleeping;
+// };
 
 void tps43_ready_callback(const struct device *gpio_dev,
 			  struct gpio_callback *cb, uint32_t pins);
