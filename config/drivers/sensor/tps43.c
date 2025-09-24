@@ -294,7 +294,6 @@ static void tps43_work_handler(struct k_work *work)
     struct tps43_data *data = CONTAINER_OF(delayable_work, struct tps43_data, work);
     const struct device *dev = data->dev;
     int ret;
-  bugbugbug
     
     k_mutex_lock(&data->lock, K_FOREVER);
     
