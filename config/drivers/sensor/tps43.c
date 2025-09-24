@@ -203,6 +203,7 @@ static int tps43_configure_device(const struct device *dev)
 
 static int tps43_device_init(const struct device *dev)
 {
+    k_msleep(10000);
     struct tps43_data *data = dev->data;
     int ret;
     
