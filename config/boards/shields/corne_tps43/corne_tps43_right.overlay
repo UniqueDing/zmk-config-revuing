@@ -26,14 +26,14 @@
 };
 
 &pinctrl {
-    i2c1_default: i2c1_default {
+    pro_micro_i2c_default: pro_micro_i2c_default {
         group1 {
             psels = <NRF_PSEL(TWIM_SDA, 1, 8)>,
                 <NRF_PSEL(TWIM_SCL, 0, 24)>;
         };
     };
 
-    i2c1_sleep: i2c1_sleep {
+    pro_micro_i2c_sleep: pro_micro_i2c_sleep {
         group1 {
             psels = <NRF_PSEL(TWIM_SDA, 1, 8)>,
                 <NRF_PSEL(TWIM_SCL, 0, 24)>;
@@ -42,7 +42,7 @@
     };
 };
 
-&i2c1 {
+&pro_micro_i2c {
     status = "okay";
     compatible = "nordic,nrf-twi";
     pinctrl-0 = <&i2c1_default>;
@@ -73,4 +73,3 @@
         i2c-timeout-ms = <10>;
     };
 };
-
