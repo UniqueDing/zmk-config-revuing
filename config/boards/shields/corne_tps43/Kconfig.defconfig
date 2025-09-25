@@ -23,4 +23,7 @@ if SHIELD_CORNE_TPS43_LEFT || SHIELD_CORNE_TPS43_RIGHT
 config ZMK_SPLIT
     default y
 
-endif 
+config ZMK_POINTING
+    default y
+
+endif
