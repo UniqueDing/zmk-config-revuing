@@ -211,7 +211,6 @@ static int tps43_configure_device(const struct device *dev)
 static int tps43_device_init(const struct device *dev)
 {
     LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
-    k_msleep(10000);
     LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     struct tps43_data *data = dev->data;
@@ -420,7 +419,6 @@ static int tps43_init(const struct device *dev)
     LOG_WRN("start init tps43!!!! 1111");
     LOG_WRN("start init tps43!!!! 2222");
     LOG_WRN("start init tps43!!!! 3333");
-    k_msleep(10000);
     LOG_WRN("start init tps43!!!! 4444");
     LOG_ERR("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 
@@ -439,6 +437,7 @@ static int tps43_init(const struct device *dev)
     /* Check I2C bus readiness */
     if (!i2c_is_ready_dt(&config->i2c)) {
         LOG_ERR("I2C bus not ready");
+    return 0;
         return -ENODEV;
     }
     
@@ -447,6 +446,7 @@ static int tps43_init(const struct device *dev)
         ret = gpio_pin_configure_dt(&config->rst_gpio, GPIO_OUTPUT_ACTIVE);
         if (ret < 0) {
             LOG_ERR("Failed to configure reset GPIO: %d", ret);
+    return 0;
             return ret;
         }
     }
@@ -456,6 +456,7 @@ static int tps43_init(const struct device *dev)
         ret = gpio_pin_configure_dt(&config->int_gpio, GPIO_INPUT);
         if (ret < 0) {
             LOG_ERR("Failed to configure interrupt GPIO: %d", ret);
+    return 0;
             return ret;
         }
         
@@ -463,6 +464,7 @@ static int tps43_init(const struct device *dev)
         ret = gpio_add_callback(config->int_gpio.port, &data->gpio_cb);
         if (ret < 0) {
             LOG_ERR("Failed to add GPIO callback: %d", ret);
+    return 0;
             return ret;
         }
     }
@@ -471,6 +473,7 @@ static int tps43_init(const struct device *dev)
     ret = tps43_device_init(dev);
     if (ret < 0) {
         LOG_ERR("Device initialization failed: %d", ret);
+    return 0;
         return ret;
     }
     
