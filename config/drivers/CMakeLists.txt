@@ -1,2 +1,1 @@
-add_subdirectory_ifdef(CONFIG_ZMK_SENSOR sensor)
-bugbugbug
+add_subdirectory_ifdef(CONFIG_INPUT input)

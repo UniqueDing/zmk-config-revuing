@@ -50,28 +50,30 @@
     pinctrl-1 = <&i2c0_sleep>;
     pinctrl-names = "default", "sleep";
 
-    tps43: trackpad@74 {
-        compatible = "azoteq,tps43";
+    tps43: iqs5xx@74 {
         status = "okay";
+        compatible = "azoteq,iqs5xx";
         reg = <0x74>;
 
-        /* TPS43 specifications */
-        variant = "43mm";
-        resolution-x = <2048>;
-        resolution-y = <1792>;
+        rdy-gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;  /* Interrupt pin */
+        reset-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;  /* Reset pin */
 
-        /* GPIO connections */
-        rst-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;  /* Reset pin */
+        /*
+         * Potentially non-exhaustive list of configuration options.
+         * See: dts/bindings/input/azoteq,iqs5xx-common.yaml for a full list.
+         */
+        one-finger-tap;
+        press-and-hold;
+        press-and-hold-time = <250>;
+        two-finger-tap;
 
-        /* Touch settings */
-        touch-threshold = <10>;
-        max-touches = <5>;
-        palm-reject-threshold = <100>;
+        scroll;
+        natural-scroll-y;
+        natural-scroll-x;
 
-        /* Enable features */
-        gesture-enable;
+        bottom-beta = <5>;
+        stationary-threshold = <5>;
 
-        /* Communication */
-        i2c-timeout-ms = <10>;
+        switch-xy;
     };
 };
